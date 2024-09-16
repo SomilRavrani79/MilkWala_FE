@@ -1,0 +1,22 @@
+.example-container {
+    height: 100%;
+  }
+  
+  mat-sidenav {
+    width: 250px;
+  }
+  
+  mat-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .primary{
+    color: red($color: #000000);
+  }
+  
+  .mat-toolbar.mat-primary {
+    --mat-toolbar-container-background-color: #a22555de;
+    --mat-toolbar-container-text-color: white;
+}   

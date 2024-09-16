@@ -1,0 +1,48 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="goBack()">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span>Customers - </span>
+  <span>{{totalRecords}}</span>
+</mat-toolbar>
+
+<mat-form-field>
+  <mat-icon matPrefix>search</mat-icon> 
+  <input matInput placeholder="Search" [(ngModel)]="searchTerm" (keyup)="onSearch(searchTerm)" />
+</mat-form-field>
+
+
+<div class="example-button-row">
+  <div class="example-flex-container">
+    <div class="example-button-container">
+      <button mat-fab (click)="addCustomerDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="customer-list">
+  <mat-card *ngFor="let customer of Customers" class="customer-card">
+    <mat-card-header>
+      <mat-card-title>Name : {{ customer?.name }}</mat-card-title>
+      <mat-card-subtitle>Phone : {{ customer?.phone }}</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <mat-card-content>
+      <p>{{ customer?.email }}</p>
+    </mat-card-content> -->
+      <div class="example-button-row">
+        <div class="example-flex-container">
+          <div class="example-button-container">
+            <button mat-mini-fab (click)="deleteCustomer(customer.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+            <button mat-mini-fab (click)="editCustomer(customer)">
+              <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+      </div>    
+  </mat-card>
+</div>

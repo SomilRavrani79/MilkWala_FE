@@ -1,0 +1,8 @@
+<div class="dashboard-container">
+  <div class="menu" *ngFor="let item of menuItems">
+    <div class="menu-item" (click)="goToSection(item.section)">
+      <img [src]="item.icon" [alt]="item.altText" />
+      <span>{{item.label}}</span>
+    </div>
+  </div>
+</div>

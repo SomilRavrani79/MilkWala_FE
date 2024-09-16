@@ -1,0 +1,48 @@
+
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .customer-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .label{
+    margin-top: 90px !important;
+  }
+  
+  .customer-card {
+    flex: 1 1 calc(33% - 16px);
+    margin: 8px;
+  }
+  
+  .mat-toolbar.mat-primary {
+    --mat-toolbar-container-background-color: #a22555de;
+    --mat-toolbar-container-text-color: white;
+}   
+
+.back{
+  background-color: transparent;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}

@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="goBack()">
+        <mat-icon>arrow_back_ios_new</mat-icon>
+    </button>
+    <span>Delivery boys -</span>
+    <span>{{totalRecords}}</span>
+</mat-toolbar>
+
+<mat-form-field>
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput placeholder="Search" [(ngModel)]="searchTerm" (ngModelChange)="onSearch()" />
+</mat-form-field>
+
+<div class="example-button-row">
+    <div class="example-flex-container">
+        <div class="example-button-container">
+            <button mat-fab (click)="addDeliveryBoysDialog()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="deliveryBoy-list">
+    <mat-card *ngFor="let deliveryboy of DeliveryBoys" class="deliveryBoy-card">
+        <mat-card-header>
+            <mat-card-title>{{ deliveryboy?.name }}</mat-card-title>
+            <mat-card-subtitle>{{ deliveryboy?.phone }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{ deliveryboy?.email }}</p>
+        </mat-card-content>
+        <div class="example-button-row">
+            <div class="example-flex-container">
+                <div class="example-button-container">
+                    <button mat-mini-fab (click)="deleteDeliveryBoyRecord(deliveryboy.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+                <button mat-mini-fab (click)="editDeliveryBoyRecord(deliveryboy)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-card>
+</div>
