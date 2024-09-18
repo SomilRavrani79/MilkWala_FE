@@ -14,11 +14,16 @@ import { SharedModule } from '../../shared/shared.module';
   styleUrl: './delivery-boy.component.scss'
 })
 export class DeliveryBoyComponent {
-  constructor(private location: Location, private dialog: MatDialog, private commonService: CommonService, private snackBar: MatSnackBar) { }
+  constructor(
+    private location: Location,
+    private dialog: MatDialog,
+    private commonService: CommonService,
+    private snackBar: MatSnackBar
+  ) { }
 
   searchTerm: string = '';
   DeliveryBoys: any;
-  totalRecords= 0;
+  totalRecords = 0;
 
   ngOnInit(): void {
     this.getdeliveryboys();
@@ -54,15 +59,10 @@ export class DeliveryBoyComponent {
         this.getdeliveryboys();
         this.showSnackbar(data.message);
       };
-    },
-    );
+    });
   }
 
-  editDeliveryBoyRecord(dboysData: any): void {
-    this.addDeliveryBoysDialog(dboysData);
-  }
-
-  addDeliveryBoysDialog(dboysData?: any): void {
+  addOrEditDeliveryBoysDialog(dboysData?: any): void {
     const dialogRef = this.dialog.open(AddDeliveryBoyComponent, {
       width: '300px',
       data: dboysData
@@ -86,7 +86,6 @@ export class DeliveryBoyComponent {
       );
     }
   }
-
 
   goBack(): void {
     this.location.back();
