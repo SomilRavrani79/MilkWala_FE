@@ -1,22 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatToolbar } from '@angular/material/toolbar';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { MatDividerModule } from '@angular/material/divider';
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { CommonService } from '../../Services/common-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SharedModule } from '../../shared/shared.module';
-
-
 
 @Component({
   selector: 'app-customer',
@@ -26,7 +14,12 @@ import { SharedModule } from '../../shared/shared.module';
   styleUrl: './customer.component.scss'
 })
 export class CustomerComponent implements OnInit {
-  constructor(private location: Location, private dialog: MatDialog, private commonService: CommonService, private snackBar: MatSnackBar) { }
+  constructor(
+    private location: Location, 
+    private dialog: MatDialog, 
+    private commonService: CommonService, 
+    private snackBar: MatSnackBar
+  ) { }
 
   searchTerm: string = '';
   Customers: any;
@@ -60,8 +53,6 @@ export class CustomerComponent implements OnInit {
     );
   }
 
-  
-
   editCustomer(customer: any): void {
     this.addCustomerDialog(customer);
   }
@@ -88,7 +79,6 @@ export class CustomerComponent implements OnInit {
       );
     }
   }
-
 
   goBack(): void {
     this.location.back();

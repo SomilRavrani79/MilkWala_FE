@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonService } from '../../Services/common-service';
 import { SharedModule } from '../../shared/shared.module';
+import { CustomerData } from '../../Const/const';
 
 @Component({
   selector: 'app-add-customer',
@@ -12,11 +13,12 @@ import { SharedModule } from '../../shared/shared.module';
   styleUrl: './add-customer.component.scss'
 })
 export class AddCustomerComponent {
-  Name = '';
-  Phone = '';
-  Email = '';
-  Id = '';
-  IsEditmode = false;
+  customerData: CustomerData = {
+    name: '',
+    phone: '',
+    email: '',
+  };
+  isEditMode = false;
 
   constructor(
     public dialogRef: MatDialogRef<AddCustomerComponent>,
@@ -24,11 +26,8 @@ export class AddCustomerComponent {
     private commonService: CommonService
   ) {
     if (data) {
-      this.IsEditmode = true;
-      this.Name = data.name;
-      this.Phone = data.phone;
-      this.Email = data.email;
-      this.Id = data.id;
+      this.isEditMode = true;
+      this.customerData = { ...data };
     }
   }
 
@@ -38,23 +37,21 @@ export class AddCustomerComponent {
 
   onSave(customerForm: NgForm): void {
     if (customerForm.valid) {
-      const customerData = {
-        Name: this.Name,
-        Phone: this.Phone,
-        Email: this.Email,
-        Id: this.Id || null
-      };
-      this.addOrUpdateCustomer(customerData);
+      this.addOrUpdateCustomer(this.customerData);
     } else {
-      // Add logic here if you want to highlight form errors or notify user
       console.log('Form is invalid');
     }
   }
 
-  addOrUpdateCustomer(customerData: any): void {
-    this.commonService.addOrUpdateCustomer(customerData).subscribe((data) => {
-      if (data.data) {
-        this.dialogRef.close();
+  private addOrUpdateCustomer(customerData: CustomerData): void {
+    this.commonService.addOrUpdateCustomer(customerData).subscribe({
+      next: (response) => {
+        if (response.data) {
+          this.dialogRef.close();
+        }
+      },
+      error: (err) => {
+        console.error('Failed to save customer data', err);
       }
     });
   }

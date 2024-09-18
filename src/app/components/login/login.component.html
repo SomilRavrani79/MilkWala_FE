@@ -12,8 +12,6 @@
             <input matInput formControlName="mobileNumber" maxlength="10"/>
             <mat-error
               *ngIf="mobileForm.get('mobileNumber')?.invalid && (mobileForm.get('mobileNumber')?.dirty || mobileForm.get('mobileNumber')?.touched)">
-              <!-- <ng-container *ngIf="mobileForm.get('mobileNumber')?.errors?.required">Mobile Number is required</ng-container>
-                <ng-container *ngIf="mobileForm.get('mobileNumber')?.errors?.pattern">Invalid Mobile Number format</ng-container> -->
             </mat-error>
           </mat-form-field>
           <button mat-raised-button color="primary" type="submit" [disabled]="mobileForm.invalid">Send OTP</button>
@@ -26,8 +24,6 @@
             <input matInput formControlName="otp" />
             <mat-error
               *ngIf="otpForm.get('otp')?.invalid && (otpForm.get('otp')?.dirty || otpForm.get('otp')?.touched)">
-              <!-- <ng-container *ngIf="otpForm.get('otp')?.errors?.required">OTP is required</ng-container>
-                <ng-container *ngIf="otpForm.get('otp')?.errors?.pattern">Invalid OTP format</ng-container> -->
             </mat-error>
           </mat-form-field>
           <button mat-raised-button color="primary" type="submit" [disabled]="otpForm.invalid">Verify OTP</button>

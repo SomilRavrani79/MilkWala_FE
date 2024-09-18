@@ -1,32 +1,29 @@
 import { Component, Inject } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { NgForm } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SharedModule } from '../../shared/shared.module';
+import { DeliveryBoy } from '../../Const/const';
 
 @Component({
   selector: 'app-add-delivery-boy',
   standalone: true,
   imports: [SharedModule],
   templateUrl: './add-delivery-boy.component.html',
-  styleUrl: './add-delivery-boy.component.scss'
+  styleUrls: ['./add-delivery-boy.component.scss']
 })
 export class AddDeliveryBoyComponent {
-  Name = '';
-  Phone = '';
-  Email = '';
-  Id = '';
-  IsEditmode = false;
+  deliveryBoy: DeliveryBoy = { name: '', phone: '', email: '' };
+  isEditMode = false;
 
-  constructor(public dialogRef: MatDialogRef<AddDeliveryBoyComponent>,
-  @Inject(MAT_DIALOG_DATA) public data: any) {
-  if (data) {
-    this.IsEditmode = true;
-    this.Name = data.name;
-    this.Phone = data.phone;
-    this.Email = data.email;
-    this.Id = data.id;
+  constructor(
+    public dialogRef: MatDialogRef<AddDeliveryBoyComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DeliveryBoy | null
+  ) {
+    if (data) {
+      this.isEditMode = true;
+      this.deliveryBoy = { ...data };
+    }
   }
-}
 
   onCancel(): void {
     this.dialogRef.close();
@@ -35,12 +32,12 @@ export class AddDeliveryBoyComponent {
   onSave(dBoyForm: NgForm): void {
     if (dBoyForm.valid) {
       const dBoyData = {
-      Name: this.Name,
-      Phone: this.Phone,
-      Email: this.Email,
-      Id: this.Id || null
-    };
-    this.dialogRef.close(dBoyData);
+        ...this.deliveryBoy,
+        id: this.deliveryBoy.id || null
+      };
+      this.dialogRef.close(dBoyData);
+    } else {
+      console.log('Form is invalid');
+    }
   }
-}
 }

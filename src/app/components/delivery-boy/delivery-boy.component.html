@@ -14,13 +14,12 @@
 <div class="example-button-row">
     <div class="example-flex-container">
         <div class="example-button-container">
-            <button mat-fab (click)="addDeliveryBoysDialog()">
+            <button mat-fab (click)="addOrEditDeliveryBoysDialog()">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
     </div>
 </div>
-
 
 <div class="deliveryBoy-list">
     <mat-card *ngFor="let deliveryboy of DeliveryBoys" class="deliveryBoy-card">
@@ -38,7 +37,7 @@
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
-                <button mat-mini-fab (click)="editDeliveryBoyRecord(deliveryboy)">
+                <button mat-mini-fab (click)="addOrEditDeliveryBoysDialog(deliveryboy)">
                     <mat-icon>edit</mat-icon>
                 </button>
             </div>
